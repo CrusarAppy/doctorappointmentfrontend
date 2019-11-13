@@ -15,6 +15,7 @@ import {
 import { createStackNavigator, createSwitchNavigator, createAppContainer } from 'react-navigation';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { ImageBackground } from 'react-native'
+import ip_path from './ip_path';
 //import LoaderBtn from './LoaderBtn';
 
 export default  class SignInScreen extends React.Component {
@@ -44,7 +45,7 @@ export default  class SignInScreen extends React.Component {
       
       check_logged_in = async() => {
         let UserID = await AsyncStorage.getItem('userID');
-        (UserID ) ? this.props.navigation.navigate('Home') : console.log("Not loggeed in")
+        (UserID ) ? this.props.navigation.navigate('Home') : this.props.navigation.navigate('SignIn')
       }
           
       
@@ -80,7 +81,7 @@ export default  class SignInScreen extends React.Component {
 
           console.log(JSON.stringify(user))
           try{
-            fetch("http://192.168.1.100:3005/api/user/login",
+            fetch(ip_path+"/api/user/login",
             {
               method:'POST',
               headers:{

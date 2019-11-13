@@ -16,6 +16,7 @@ import { createStackNavigator, createSwitchNavigator, createAppContainer } from 
 import DropdownMenu from 'react-native-dropdown-menu';
 import { Dropdown } from 'react-native-material-dropdown';
 import DatePicker from 'react-native-datepicker'
+import ip_path from './ip_path';
 //import LoaderBtn from './LoaderBtn';
 
 
@@ -97,7 +98,7 @@ export default class Register extends React.Component {
           console.log(params);
          // const config = {headers:{'Content-Type':'application/json'}};
          try{
-          fetch("http://192.168.1.92:3005/api/user/register",
+          fetch(ip_path+"/api/user/register",
           {
             method:'POST',
             headers:{
