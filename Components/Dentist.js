@@ -31,16 +31,21 @@ export default class Dentist extends React.Component {
         flag:false,
         name:"aasis",
         address:"bagar",
-        email:"sddf"
+        email:"sddf",
+        user_id:'5dc94c24a1d5c431189b152a',
+        doctor_id:1
       }
     }
 
-    AsyncStorage.setItem('user_id',)
+    
   }
 
   componentDidMount(){
     
-        
+
+    AsyncStorage.getItem("userID").then((result)=>{
+        this.setState({user_id:result})
+    })
       // console.log(JSON.stringify(user))
       try{
         fetch(ip_path+"/api/doctors/doctorSpeciality/dentist",
@@ -80,15 +85,12 @@ export default class Dentist extends React.Component {
         
       }
       _dentist =(item) => {
+
+
+        this.setState({clickedElement:{flag:true,name:item.Fullname,address:item.Address,email:item.Email,user_id:this.state.clickedElement.user_id,doctor_id:item._id}})
+
         //await AsyncStorage.setItem('userToken', 'abc');
-       AsyncStorage.getItem("userID",function(err,result){
-        console.log(result)
-        this.setState({clickedElement:{flag:true,name:item.Fullname,address:item.Address,email:item.Email,user_id:result,doctor_id:item._id}})
-
-        // alert('element is '+result)
-        // console.log(err)
-
-       })
+     
         
        
       };

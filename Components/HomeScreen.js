@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button,Image,ImageBackround,TextInput,ScrollView } from 'react-native';
+import { Button,Image,ImageBackround,TextInput,ScrollView, AsyncStorage } from 'react-native';
 import {
     View,
     StyleSheet,
@@ -9,6 +9,7 @@ import {
     Text,
     Alert,
     Picker,
+    BackHandler
   } from 'react-native';
   
 import Icon from 'react-native-vector-icons/FontAwesome5';
@@ -25,7 +26,7 @@ export default class HomeScreen extends React.Component {
        selectedValue:'' ,
      };
       //logout
-    logout = ()=> {
+    logout =()=> {
       Alert.alert(
         'LOGOUT',
         'Are you sure you want to logout?',
@@ -34,15 +35,64 @@ export default class HomeScreen extends React.Component {
           {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
           {text: 'OK', onPress:() =>{
             this.isNotiActive= true;
-            (async () => {
-              let cleanStorage = await AsyncStorage.clear();
-              this.props.navigation.navigate('SignIn');
-              this.setState({UserID: null});
-            })()
+            AsyncStorage.setItem('userID',null)
+            this.props.navigation.navigate('SignIn')
+            // (async () => {
+            //   let cleanStorage = await AsyncStorage.clear();
+            //   this.props.navigation.navigate('SignIn');
+            //   this.setState({UserID: null});
+            // })()
           }  },
         ],
     )
     
+  }
+
+  onAndroidBackPress = () => {
+   
+    this.exitApp();
+    return true;
+  
+};
+  exitApp() {
+    Alert.alert(
+      'Exit App',
+      'Exiting the application?',
+      [
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {
+          text: 'OK',
+          onPress: () => BackHandler.exitApp(),
+        },
+      ],
+      {
+        cancelable: false,
+      },
+    );
+    return true;
+  }
+
+
+
+  componentDidMount() {
+    if (Platform.OS === 'android') {
+      BackHandler.addEventListener(
+        'hardwareBackPress',
+        this.onAndroidBackPress,
+      );
+      
+    }
+    
+   
+  }
+  componentWillUnmount(){
+    if (Platform.OS === 'android') {
+      BackHandler.removeEventListener('hardwareBackPress');
+    }
   }
     
     render() {

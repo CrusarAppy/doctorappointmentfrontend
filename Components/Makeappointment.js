@@ -18,45 +18,68 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import { ImageBackground } from 'react-native';
 import DatePicker from 'react-native-datepicker';
 import ip_path from './ip_path'
-
+import { Snackbar } from 'react-native-paper'
 export default class FindnBook extends React.Component {
     static navigationOptions = {
         title: '',
         backgroundColor:'#91dbb0',
+        appointmentVisibility:false
     //    headerRight: <Icon name="map-marker-alt" size={30} color="#4d5454" />        
        //header:null
       };
       constructor(props){
         super(props)
         //set value in state for initial date
-        this.state = {date:"15-05-2018"}
+        this.state = {date:"15-05-2018",time_slot:'',modalVisible: false}
 
         console.log(this.props)
       }
-      state = {
-        modalVisible: false,
-      };
+      
     
       setModalVisible(visible) {
         this.setState({modalVisible: visible});
       }
+
+      confirmAppointment=()=>{
+
+        Alert.alert(
+          'LOGOUT',
+          'Are you sure you want to confirm appointment?',
+          [
+           
+            {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+            {text: 'OK', onPress:() =>{
+              this.makeAppointment()
+              
+            }  },
+          ],
+      )
+      }
       makeAppointment = () =>{
+
+
+        let params={
+          'time_slot':this.state.time_slot,
+          'date':this.state.date
+        }
+        // this.setModalVisible(!this.state.modalVisible);
         try{
-          fetch(ip_path+"/api/user/register",
+          fetch(ip_path+"/api/appointments/createAppointment/"+this.props.data.user_id + "/"+this.props.data.doctor_id,
           {
             method:'POST',
             headers:{
               'Accept' : 'application/json',
               'Content-Type' : 'application/json'
             },
-            body: params
+            body: JSON.stringify(params)
           })
           .then((response => response.json()))
           .then((responsejson) => {
-              console.log(responsejson)
+              console.log('response of appointment',responsejson)
+              this.setState({appointmentVisibility:true})
 
-              this.setState({loading:false, signUpMsg:'Account created successfully! and Navigate to Login'});
-              this.props.navigation.navigate('SignIn')
+              // this.setState({loading:false, signUpMsg:'Account created successfully! and Navigate to Login'});
+              // this.props.navigation.navigate('SignIn')
 
           })
           .catch(err => {
@@ -72,7 +95,9 @@ export default class FindnBook extends React.Component {
       }
       render() {
         return (
-            <ScrollView style={[styles.backgroundColor]}>
+
+          <View style={{flex:1}}>
+            <ScrollView style={{...styles.backgroundColor,flex:1}}>
             <View style={[styles.container]}>
                                 
                 <View style={[styles.profilecard]}>
@@ -121,109 +146,42 @@ export default class FindnBook extends React.Component {
                         <Text style={[styles.text]}> Availabl time(9:30am-4:30pm):</Text>                        
                         <View style={[styles.timebox]}>
                             <View style={[styles.horflex]}>
-                                <TouchableOpacity style={styles.timekey} onPress={this._homePage}>                          
+                                <TouchableOpacity style={styles.timekey} onPress={()=>this.setState({time_slot:'9:30-10:00 am'})}>                          
                                     <Text style={[styles.text1]}>9:30-10:00</Text>                           
                                 </TouchableOpacity>
-                                <TouchableOpacity style={styles.timekey} onPress={this._homePage}>                          
+                                <TouchableOpacity style={styles.timekey} onPress={()=>this.setState({time_slot:'10:00-10:30 am'})}>                          
                                     <Text style={[styles.text1]}>10:00-10:30</Text>                           
                                 </TouchableOpacity>
-                                <TouchableOpacity style={styles.timekey} onPress={this._homePage}>                          
+                                <TouchableOpacity style={styles.timekey} onPress={()=>this.setState({time_slot:'10:30-11:00 am'})}>                          
                                     <Text style={[styles.text1]}>10:30-11:00</Text>                           
                                 </TouchableOpacity>
                             </View>
                             <View style={[styles.horflex]}>
-                                <View style={styles.bookedtimekey} onPress={this._homePage}>                          
+                                <View style={styles.bookedtimekey} onPress={()=>this.setState({time_slot:'12:00-12:30 am'})}>                          
                                     <Text style={[styles.text1]}>12:00-12:30</Text>                           
                                 </View>
-                                <TouchableOpacity style={styles.timekey} onPress={this._homePage}>                          
+                                <TouchableOpacity style={styles.timekey} onPress={()=>this.setState({time_slot:'9:30-10:00 am'})}>                          
                                     <Text style={[styles.text1]}>12:30-01:00</Text>                           
                                 </TouchableOpacity>
-                                <TouchableOpacity style={styles.timekey} onPress={this._homePage}>                          
+                                <TouchableOpacity style={styles.timekey} onPress={()=>this.setState({time_slot:'9:30-10:00 am'})}>                          
                                     <Text style={[styles.text1]}>01:00-01:30</Text>                           
                                 </TouchableOpacity>
                             </View>
                             <View style={[styles.horflex]}>
-                                <TouchableOpacity style={styles.timekey} onPress={this._homePage}>                          
+                                <TouchableOpacity style={styles.timekey} onPress={()=>this.setState({time_slot:'9:30-10:00 am'})}>                          
                                     <Text style={[styles.text1]}>01:30-02:00</Text>                           
                                 </TouchableOpacity>
-                                <TouchableOpacity style={styles.timekey} onPress={this._homePage}>                          
+                                <TouchableOpacity style={styles.timekey} onPress={()=>this.setState({time_slot:'9:30-10:00 am'})}>                          
                                     <Text style={[styles.text1]}>03:30-04:00</Text>                           
                                 </TouchableOpacity>
-                                <View style={styles.bookedtimekey} onPress={this._homePage}>                          
+                                <View style={styles.bookedtimekey} onPress={()=>this.setState({time_slot:'9:30-10:00 am'})}>                          
                                     <Text style={[styles.text1]}>04:00-04:30</Text>                           
                                 </View>
                             </View>                           
                         </View>                        
-                         <Modal
-                         transparent={true}
-                      // backgroundColor="transparent"
-                            animationType="slide"
-                           // transparent={false}
-                            visible={this.state.modalVisible}
-                         //   onRequestClose={() => {
-                          //      Alert.alert('Modal has been closed.');
-                          //  }}
-                            >
-                        
-                          {/* <View style={{backgroundColor:'#b4f768'}}> */}
-                            <View style={{
-                                flex: 1,
-                                flex:1,
-                                height:150,
-                                width:350,
-                                flexDirection:'column',
-                                borderRadius:10,
-                                justifyContent:'center',
-                                alignItems:'center',
-                                backgroundColor:'#b4d490', 
-                                marginTop:400,marginBottom:80   }}>
-                                {/* <View style={{marginTop: 22},styles.modal_container}> */}
-                                <Text style={{color: '#000000',
-                                              fontWeight: 'bold',
-                                              fontSize: 20,
-                                              justifyContent:'center',
-                                              alignItems:'baseline',
-                                              marginLeft:10,
-                                              marginTop:20}}>Confirm booking?</Text>
-                                <View style={{flex:1,
-                                              height:50,
-                                              width:300,
-                                              flexDirection:'row',
-                                              borderRadius:10,
-                                              justifyContent:'center',
-                                              alignItems:'baseline',
-                                              backgroundColor:'#b4d490',
-                                              marginTop:30,  
-                                              justifyContent:'space-between'}}>
-                                <TouchableOpacity
-                                    onPress={() => {
-                                    this.setModalVisible(!this.state.modalVisible);
-                                    }}>
-                                    <Text style={{color: '#55594f',
-                                            fontWeight: 'bold',
-                                            fontSize: 12,
-                                            justifyContent:'center',
-                                            alignItems:'center',
-                                            marginLeft:20}}>Cancel</Text>
-                                    </TouchableOpacity>
-                                <TouchableOpacity
-                                    onPress={() => {
-                                    this.setModalVisible(!this.state.modalVisible);
-                                    }}>
-                                    <Text style={{color: '#55594f',
-                                          fontWeight: 'bold',
-                                          fontSize: 12,
-                                          justifyContent:'center',
-                                          alignItems:'center',
-                                          marginRight:20}}>Ok</Text>
-                                </TouchableOpacity>
-                                </View>
-                                </View>                           
-                            </Modal >                            
+                                    
                             <View style={[styles.confirmline]}>                                
-                            <TouchableOpacity style={styles.makeapointment} onPress={() => {
-                                                                            this.setModalVisible(true);
-                                                                        }}>
+                            <TouchableOpacity style={styles.makeapointment} onPress={()=>this.confirmAppointment()}>
                                 <Icon name="check" size={20} color="#ffffff" />                        
                                 <Text style={[styles.text1]}>Confirm appointment</Text>                         
                                 </TouchableOpacity>
@@ -232,10 +190,24 @@ export default class FindnBook extends React.Component {
                                 <Text style={[styles.text1]}>Call</Text>                         
                                 </TouchableOpacity>
                             </View>                          
-                                              
+                         
+                
                  </View>                 
            
+
+                
+                 
         </ScrollView>
+
+        <Snackbar
+                    visible={this.state.appointmentVisibility}
+                    onDismiss={()=>this.setState({appointmentVisibility:false})}
+                    duration={Snackbar.LENGTH_SHORT}
+
+                >
+                   Your appointment is confirmed
+                </Snackbar>
+        </View>
             )};
         }
         const styles = StyleSheet.create({ 
