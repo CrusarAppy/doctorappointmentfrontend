@@ -80,7 +80,7 @@ export default class FindnBook extends React.Component {
                   <Text>Dentists</Text> 
                   </TouchableOpacity>
 
-                  <TouchableOpacity style={[styles.vflex]} onPress={this._doclist}>
+                  <TouchableOpacity style={[styles.vflex]} onPress={this._dermatologist}>
                   <Icon name="allergies" size={30} color="#4d5454" style={[styles.image]}/> 
                   <Text>Dermatologist</Text> 
                   </TouchableOpacity>
@@ -137,9 +137,9 @@ export default class FindnBook extends React.Component {
           // await AsyncStorage.setItem('userToken', 'abc');
           this.props.navigation.navigate('Dentist');
         };
-        _doclist = async () => {
+        _dermatologist = async () => {
           // await AsyncStorage.setItem('userToken', 'abc');
-          this.props.navigation.navigate('Doclist');
+          this.props.navigation.navigate('Dermato');
         };
         _undercons = async () => {
           // await AsyncStorage.setItem('userToken', 'abc');

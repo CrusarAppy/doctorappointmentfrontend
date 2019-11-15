@@ -21,6 +21,12 @@ import ip_path from './ip_path'
 
 
 export default class Dentist extends React.Component {
+  static navigationOptions = {
+    title: 'Dentists',
+ //   backgroundColor:'#91dbb0',
+  //  headerRight: <Icon name="map-marker-alt" size={30} color="#4d5454" />        
+   //header:null
+  };
 
   constructor(props){
     super(props)
@@ -76,21 +82,15 @@ export default class Dentist extends React.Component {
         console.log(err);
     }
   }
-    static navigationOptions = {
-        title: 'Find your Dentist',
-        header:null
-      };
+    
 
-      directToAppointment(){
-        
-      }
+      
       _dentist =(item) => {
 
 
         this.setState({clickedElement:{flag:true,name:item.Fullname,address:item.Address,email:item.Email,user_id:this.state.clickedElement.user_id,doctor_id:item._id}})
 
-        //await AsyncStorage.setItem('userToken', 'abc');
-     
+        //await AsyncStorage.setItem('userToken', 'abc');    
         
        
       };
@@ -129,8 +129,6 @@ export default class Dentist extends React.Component {
         </TouchableOpacity>
      );
 
-     
-
 
     render() {
 
@@ -148,138 +146,8 @@ export default class Dentist extends React.Component {
             renderItem = {this._renderItem}
             
             /> 
-          </View>
-
-          
-    // <ScrollView style={[styles.backgroundColor]}>
-    //   <View>
-    //     <View style={[styles.container]}> 
-    //     <View style={[styles.searchengineContainer]}>
-    //           <View style={[styles.hflex]}> 
-    //                 <Icon name="search" size={30} color="#4d5454" />               
-    //                 <TextInput style={[styles.inputbox]}
-    //                   placeholder="Search for Dentists"
-    //                   placeholderTextColor="#4d5454"
-    //                   //  underlineColorAndroid="transparent"                        
-    //                   //  numberOfLines = {1}
-    //                     borderBottomColor='#3e3a42'
-    //                     onChangeText={(username) => this.setState({ username })}
-    //                   />
-    //                 </View> 
-    //             </View>
-    //            <View style={[styles.doctorcontainer]}> 
-    //            <Text style={[styles.avai]}>Available Dentists</Text>           
-    //             <View style={[styles.profilecard]}>
-    //              <View style={[styles.container1]}>
-    //                 <View style={[styles.container2]}>
-    //                 <Icon name="user-md" size={80} color="#4d5454" /> 
-    //                     <View style={[styles.verflex]}>
-    //                         <Text style={[styles.text]}></Text>
-    //                         <Text></Text>
-    //                         <Text></Text>
-    //                         <Text></Text>
-    //                     </View>
-    //                     </View>
-                                                
-    //                     </View>
-    //                     <View style={[styles.container3]}>
-    //                       <TouchableOpacity style={styles.viewprofile} onPress={this._homePage}>                          
-    //                             <Text style={[styles.text]}>View Profile</Text>                         
-    //                       </TouchableOpacity>
-    //                       <TouchableOpacity style={styles.makeappointment} onPress={this._makeappointment}>                          
-    //                             <Text style={[styles.text1]}>Make Appointment</Text>                         
-    //                       </TouchableOpacity>
-    //                       <TouchableOpacity style={styles.call} onPress={this._homePage}>  
-    //                       <Icon name="phone" size={15} color="#ffffff" />                        
-    //                       <Text style={[styles.text1]}>Call</Text>                         
-    //                       </TouchableOpacity>
-    //                 </View>                    
-    //               </View>      
-    //               <View style={[styles.profilecard]}>
-    //              <View style={[styles.container1]}>
-    //                 <View style={[styles.container2]}>
-    //                 <Icon name="user-md" size={80} color="#4d5454" /> 
-    //                     <View style={[styles.verflex]}>
-    //                         <Text style={[styles.text]}>Dr.Kabil Subedi</Text>
-    //                         <Text>Miracle dental care</Text>
-    //                         <Text>Parsyang,Pokhara</Text>
-    //                         <Text>9846801108</Text>
-    //                     </View>
-    //                     </View>
-                                                
-    //                     </View>
-    //                     <View style={[styles.container3]}>
-    //                       <TouchableOpacity style={styles.viewprofile} onPress={this._homePage}>                          
-    //                             <Text style={[styles.text]}>View Profile</Text>                         
-    //                       </TouchableOpacity>
-    //                       <TouchableOpacity style={styles.makeappointment} onPress={this._homePage}>                          
-    //                             <Text style={[styles.text1]}>Make Appointment</Text>                         
-    //                       </TouchableOpacity>
-    //                       <TouchableOpacity style={styles.call} onPress={this._homePage}>  
-    //                       <Icon name="phone" size={15} color="#ffffff" />                        
-    //                       <Text style={[styles.text1]}>Call</Text>                         
-    //                  </TouchableOpacity>
-    //                 </View>                    
-    //               </View>      
-    //               <View style={[styles.profilecard]}>
-    //              <View style={[styles.container1]}>
-    //                 <View style={[styles.container2]}>
-    //                 <Icon name="user-md" size={80} color="#4d5454" /> 
-    //                     <View style={[styles.verflex]}>
-    //                         <Text style={[styles.text]}>Dr.Subham bhandari</Text>
-    //                         <Text>Bhandari dental care</Text>
-    //                         <Text>lamachour,Pokhara</Text>
-    //                         <Text>9846800008</Text>
-    //                     </View>
-    //                     </View>
-                                                
-    //                     </View>
-    //                     <View style={[styles.container3]}>
-    //                       <TouchableOpacity style={styles.viewprofile} onPress={this._homePage}>                          
-    //                             <Text style={[styles.text]}>View Profile</Text>                         
-    //                       </TouchableOpacity>
-    //                       <TouchableOpacity style={styles.makeappointment} onPress={this._homePage}>                          
-    //                             <Text style={[styles.text1]}>Make Appointment</Text>                         
-    //                       </TouchableOpacity>
-    //                       <TouchableOpacity style={styles.call} onPress={this._homePage}>  
-    //                       <Icon name="phone" size={15} color="#ffffff" />                        
-    //                       <Text style={[styles.text1]}>Call</Text>                         
-    //                  </TouchableOpacity>
-    //                 </View>                    
-    //               </View> 
-    //               <View style={[styles.profilecard]}>
-    //              <View style={[styles.container1]}>
-    //                 <View style={[styles.container2]}>
-    //                 <Icon name="user-md" size={80} color="#4d5454" /> 
-    //                     <View style={[styles.verflex]}>
-    //                         <Text style={[styles.text]}>Dr.Sugam Pradhan</Text>
-    //                         <Text>Gandaki dental care</Text>
-    //                         <Text>Prithvichowkh,Pokhara</Text>
-    //                         <Text>9846914455</Text>
-    //                     </View>
-    //                     </View>
-                                                
-    //                     </View>
-    //                     <View style={[styles.container3]}>
-    //                       <TouchableOpacity style={styles.viewprofile} onPress={this._homePage}>                          
-    //                             <Text style={[styles.text]}>View Profile</Text>                         
-    //                       </TouchableOpacity>
-    //                       <TouchableOpacity style={styles.makeappointment} onPress={this._homePage}>                          
-    //                             <Text style={[styles.text1]}>Make Appointment</Text>                         
-    //                       </TouchableOpacity>
-    //                       <TouchableOpacity style={styles.call} onPress={this._homePage}>  
-    //                       <Icon name="phone" size={15} color="#ffffff" />                        
-    //                       <Text style={[styles.text1]}>Call</Text>                         
-    //                  </TouchableOpacity>
-    //                 </View>                    
-    //               </View>                                  
-                  
-    //             </View>                                   
-    //          </View> 
-    //       </View>
-    //  </ScrollView>  
-                
-        
+          </View>       
+ 
         );
         }
       }

@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 import {
   TouchableOpacity,
   Text,
-  Image,  
+  Image,
   TextInput,
   ActivityIndicator,
   AsyncStorage,
@@ -11,38 +11,74 @@ import {
   StyleSheet,
   ScrollView,
   View,
-} from 'react-native';
-import { createStackNavigator, createSwitchNavigator, createAppContainer } from 'react-navigation';
-import Icon from 'react-native-vector-icons/FontAwesome5';
-import { ImageBackground } from 'react-native'
+  FlatList
+} from "react-native";
+import {
+  createStackNavigator,
+  createSwitchNavigator,
+  createAppContainer
+} from "react-navigation";
+import Icon from "react-native-vector-icons/FontAwesome5";
+import { ImageBackground } from "react-native";
 
-export default class Underconstruction extends React.Component {
-    static navigationOptions = {
-        title: 'Go Back',
-     //   backgroundColor:'#91dbb0',
-      //  headerRight: <Icon name="map-marker-alt" size={30} color="#4d5454" />        
-       //header:null
-      };
-      render() {
+export default class Myappointments extends React.Component {
+  static navigationOptions = {
+    title: ""
+    //   backgroundColor:'#91dbb0',
+    //  headerRight: <Icon name="map-marker-alt" size={30} color="#4d5454" />
+    //header:null
+  };
+  state={
+    data: []
+  }
+
+  componentDidMount = () => {
+    var user_id = null
+    AsyncStorage.getItem("userID").then(result => {
+      // this.setState({ user_id: result });
+      // console.log(this.state.user_id);
+      user_id = result
+      const url = ip_path + "/api/appointments/user/" +user_id
+      console.log(url)
+      fetch(url)
+          .then(response => response.json())
+          .then(responseJson => {
+            console.log(responseJson)
+            this.setState(
+              {
+                data: responseJson.appointment
+              
+              })
+            
+          })      
+          .catch(error => {
+            console.error(error);
+          });
+    });
+   
+  };
+
+  render() {
         return (
-            <View style={[styles.container]}>                
-                <Text style={[styles.text]}>Appointment history:</Text>
-            </View>
+      <View style={{ flex: 1, paddingTop: 20 }}>
+       <Text>Appointment time - slot: {this.state.data.time_slot}</Text>
+       <Text>Appointment Date : {new Date(this.state.data.date).toDateString()}</Text>
+         
+      </View>
+    );
+  }
+}
 
-            )};
-        }
-const styles = StyleSheet.create({    
-        text: {
-            color: '#4d5454',
-            fontWeight: 'bold',
-            fontSize: 30,
-            marginTop:15,
-           
-           },
-           container:{
-               flex:1,
-               justifyContent:'flex-start',
-             //  alignItems:'center'
-           }
-    }
-)
+const styles = StyleSheet.create({
+  text: {
+    color: "#4d5454",
+    fontWeight: "bold",
+    fontSize: 30,
+    marginTop: 15
+  },
+  container: {
+    flex: 1,
+    justifyContent: "flex-start"
+    //  alignItems:'center'
+  }
+});

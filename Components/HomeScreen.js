@@ -13,6 +13,7 @@ import {
   } from 'react-native';
   
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import SearchBar from 'react-native-dynamic-search-bar';
 
 export default class HomeScreen extends React.Component {   
   static navigationOptions = {
@@ -107,55 +108,73 @@ export default class HomeScreen extends React.Component {
                       <Icon name="sign-out-alt" size={30} color="#4d5454" style={[styles.image], {marginLeft:300}} /> 
                 </TouchableOpacity>
           </View>  
-          <View style={[styles.searchengineContainer]}>
-             <View style={[styles.hflex]}> 
-                <Icon name="search" size={30} color="#4d5454" />               
-                <TextInput style={[styles.inputbox]}
+            <View>
+                {/* <Icon name="search" size={30} color="#4d5454" />                */}
+                {/* <TextInput style={[styles.inputbox]}
                            placeholder="Search for doctor,clinic or diseases"
                            placeholderTextColor="#4d5454"
                            //  underlineColorAndroid="transparent"                        
                             //  numberOfLines = {1}
                              borderBottomColor='#3e3a42'
                             onChangeText={(search) => this.setState({ search })}
+                /> */}
+                <SearchBar  
+                onPressToFocus
+                cancelButtonDisable
+                iconColor ="#c6c6c6"
+                placeholder="Search for doctor,clinic or diseases"
+                autoFocus= {false}
+                fontColor = "#c6c6c6"
+                shadowColor = "#282828"
+
+                onChangeText = {text => {
+                  console.log(text)
+                }}
+                onPressCancel ={() => {
+                  this.filterList("");
+                }}
+                onPress = {()=> { }}
                 />
+
+
                </View> 
-          </View> 
+        
                 
               <View style={[styles.container1]}>
               <Text style={[styles.text]}>What you looking for?</Text>                
                 <View style={[styles.hflex]}>
                   <TouchableOpacity style={[styles.vflex]} onPress={this._findNbook}>
                   <Icon name="calendar-check" size={30} color="#4d5454" style={[styles.image]} /> 
-                  <Text> Make Appointment</Text>
+                  <Text style={[styles.text3]}> Make Appointment</Text>
                   </TouchableOpacity>
                   <TouchableOpacity style={[styles.vflex]} onPress={this._predict}>
                   <Icon name="frown" size={30} color="#4d5454" style={[styles.image]}/>
-                  <Text> Go for disease prediction</Text>
+                  <Text style={[styles.text3]}> Go for disease prediction</Text>
                   </TouchableOpacity>
                 </View>
                 
                 <View style={[styles.hflex]}>
                   <TouchableOpacity style={[styles.vflex]} onPress={this._myappoimts}>
                   <Icon name="history" size={30} color="#4d5454" style={[styles.image]}/>
-                  <Text>My appointment history</Text>
+                  <Text style={[styles.text3]}>My appointment history</Text>
 
                   </TouchableOpacity>
                   <TouchableOpacity style={[styles.vflex]}>
                   <Icon name="tablets" size={30} color="#4d5454" style={[styles.image]} onPress={this._undercons}/> 
-                  <Text>Medicines and heallth</Text>
+                  <Text style={[styles.text3]}>Medicines and heallth</Text>
                   </TouchableOpacity>
                 </View>
                 <View style={[styles.hflex]}>
                   <TouchableOpacity style={[styles.vflex]} onPress={this._prediction}>
                   <Icon name="cloud-meatball" size={30} color="#4d5454" style={[styles.image]}/> 
-                  <Text>Diet and Exerciser</Text>
+                  <Text style={[styles.text3]}> Diet and Exerciser</Text>
 
                   </TouchableOpacity>
                   <TouchableOpacity style={[styles.vflex]} 
                   onPress={this._setting}
                   >
                   <Icon name="user-cog" size={30} color="#4d5454" style={[styles.image]}/> 
-                  <Text>Account setting</Text>
+                  <Text style={[styles.text3]}>Account setting</Text>
                   </TouchableOpacity>
                 </View>
               </View> 
@@ -242,9 +261,9 @@ export default class HomeScreen extends React.Component {
         hflex:{
           flexDirection:"row",
           flex:1,
-          justifyContent:'center',
-          alignItems:'baseline' ,
-          marginLeft:10
+          justifyContent:'flex-start',
+          alignItems:'center' ,
+          marginLeft:0
         },
         backgroundColor:{
           backgroundColor:'#91dbb0'
@@ -263,6 +282,9 @@ export default class HomeScreen extends React.Component {
           fontSize: 20,
           marginTop:10,
          
+         },
+         text3:{
+           fontSize:13
          },
         vflex:{
           flexDirection:"column",
@@ -312,7 +334,7 @@ export default class HomeScreen extends React.Component {
           flex: 1,
           alignItems: 'center',
           justifyContent: 'center',
-          height:250,
+          height:290,
           width:'100%',
           marginTop:40,
         //  borderBottomColor:'#079126',
@@ -322,7 +344,7 @@ export default class HomeScreen extends React.Component {
           flex: 1,
           alignItems: 'center',
           justifyContent: 'center',
-          height:70,
+          height:90,
           width:'100%',
           marginTop:10,
         //  borderBottomColor:'#079126',

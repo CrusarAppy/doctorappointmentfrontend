@@ -18,10 +18,10 @@ import { ImageBackground } from 'react-native'
 
 
 export default class Diet extends React.Component {
-    // static navigationOptions = {
-    //    title: 'Your Account Setting',       
-    //    header:null
-    //   };    
+    static navigationOptions = {
+       title: 'Your Account Setting',       
+       //header:null
+      };    
       render() {
         return (
             <ScrollView>
@@ -33,11 +33,11 @@ export default class Diet extends React.Component {
         );
     }
 }
-Diet.navigationOptions={  
-    tabBarIcon:({tintColor, focused})=>(  
-        <Icon name="pizza-slice" size={30} color="#ffffff" /> 
-)  
-}  
+// Diet.navigationOptions={  
+//     tabBarIcon:({tintColor, focused})=>(  
+//         <Icon name="pizza-slice" size={30} color="#ffffff" /> 
+// )  
+// }  
 
 const styles = StyleSheet.create({
     container: {

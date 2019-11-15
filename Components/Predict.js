@@ -21,44 +21,51 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 
 
 export default class Predict extends Component{
-  state = {
-    visibleModal: null,
-    scrollOffset: null,
-    symptom1:null,    
-    symptom1:null,
-    symptom1:null,
-    symptom1:null,    
-    symptom1:null,   
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      visibleModal: null,
+      scrollOffset: null,
+      symptom1:"abdominal_pain",    
+      symptom2:"abdominal_pain",
+      symptom3:"abdominal_pain",
+      symptom4:"abdominal_pain",    
+      symptom5:"abdominal_pain",  
+      data : [] 
+    };
+    
+  }
   static navigationOptions = {
-    title: 'Lots of features here',
-    header:null
+    title: ' Disease Prediction',
+    //header:null
   };
   
-  handlePredict = () => {
-    console.log('response')
-    fetch("https://www.google.com/" ).then (response => {
-      console.log(response)
-    });
-};
-  renderModalContent = () => (
-    <View style={styles.content}>
-      <Text style={styles.contentTitle}>Hi 👋!</Text>
-      <Button
-        onPress={() => this.setState({visibleModal: null})}
-        title="Close"
-      />
-    </View>
-  );
-  renderModalContent1 = () => (
-    <View style={styles.content}>
-      <Text style={styles.contentTitle}>Hello 👋!</Text>
-      <Button
-        onPress={() => this.setState({visibleModal: null})}
-        title="Close"
-      />
-    </View>
-  );
+  componentDidMount(){    
+   
+   
+   
+  }
+
+
+
+  // renderModalContent = () => (
+  //   <View style={styles.content}>
+  //     <Text style={styles.contentTitle}>Hi 👋!</Text>
+  //     <Button
+  //       onPress={() => this.setState({visibleModal: null})}
+  //       title="Close"
+  //     />
+  //   </View>
+  // );
+  // renderModalContent1 = () => (
+  //   <View style={styles.content}>
+  //     <Text style={styles.contentTitle}>Hello 👋!</Text>
+  //     <Button
+  //       onPress={() => this.setState({visibleModal: null})}
+  //       title="Close"
+  //     />
+  //   </View>
+  // );
 
   handleOnScroll = event => {
     this.setState({
@@ -70,7 +77,32 @@ export default class Predict extends Component{
     if (this.scrollViewRef) {
       this.scrollViewRef.scrollTo(p);
     }
-  };
+  }
+  handlePredict = () => {
+
+    const url =`http://192.168.1.126:5000/?symptoms=${this.state.symptom1},${this.state.symptom2},${this.state.symptom3},${this.state.symptom4},${this.state.symptom5}`
+    console.log(url)
+    try{
+      fetch(url)
+      .then((response => response.text()))
+      .then((responsejson) => {
+        this.setState({loading:false,
+            data:responsejson
+        })
+         // this.onSuccessSignIn(responsejson                       )
+          console.log(responsejson)          
+
+      })
+      .catch(err => {
+        //this.onFailSignIn()
+        console.log(err)
+      })
+      
+  }catch(err){          
+      
+      console.log(err);
+  }
+  }
 
   render() {
     var symptoms=[]
@@ -600,18 +632,17 @@ export default class Predict extends Component{
             </Picker> 
             <TouchableOpacity style={[styles.loginButton]} onPress={this.handlePredict}>
                         <Text style={[styles.text1]}>Predict</Text>
-                        </TouchableOpacity>
-            
-            <TextInput style={[styles.inputbox]}
-                        placeholder="Predicted Disease"
-                       placeholderTextColor="#4d5454"
-                        underlineColorAndroid="transparent"                        
-                        numberOfLines = {1}
-                        borderBottomColor='#3e3a42'
-                        justifyContent='center'
-                        onChangeText={(username) => this.setState({ username })}
-                      />                        
-         
+            </TouchableOpacity>
+
+            <View>
+              <Text>Predicted disease : {this.state.data}</Text>
+            </View>
+
+{/*             
+            <Button>
+             {this.state.data}
+            </Button>                  
+          */}
         
         
         <Text style={[styles.text1]}>Doctor you are prefered</Text>

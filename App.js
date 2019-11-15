@@ -24,7 +24,7 @@ import Undercons from './Components/Underconstruction';
 import Myappointments from './Components/My_appointments';
 import Neuro from './Components/Neurologist';
 import Cardio from './Components/Cardiologist';
-import Doclists from './Components/Doctorlist';
+import Dermatologist from './Components/Doctorlist';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -38,7 +38,7 @@ const AppStack = createStackNavigator({ Home: HomeScreen, Dietnexercise:Dietnex,
                                       Dentist:Dentists,MakeApointment:Makeapointments,
                                     Underconstruction:Undercons,Neurologist:Neuro,
                                   Cardiologist:Cardio,Predict:Predicts,
-                                Myappointment:Myappointments,Doclist:Doclists});
+                                Myappointment:Myappointments,Dermato:Dermatologist});
 const AuthStack = createStackNavigator({ SignIn: SignInScreen, Register: Register , Home :HomeScreen });
 
 export default createAppContainer(createSwitchNavigator(
