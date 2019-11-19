@@ -12,7 +12,8 @@ import {
   ScrollView,
   View,
   Modal,
-  Alert
+  Alert,
+
 } from "react-native";
 import {
   createStackNavigator,
@@ -32,13 +33,28 @@ export default class FindnBook extends React.Component {
     //    headerRight: <Icon name="map-marker-alt" size={30} color="#4d5454" />
     //header:null
   };
+
   constructor(props) {
     super(props);
+    
+  this.state= {
+    date: "",
+    time_slot: ""
+  }
     //set value in state for initial date
-    this.state = { date: "15-05-2018", time_slot: "", modalVisible: false };
-
     console.log(this.props);
   }
+
+  
+  //   componentDidMount = ()=>{
+  //     let user_id = null;
+  //     AsyncStorage.getItem("userID").then(result => {
+  //       // this.setState({ user_id: result });
+  //       // console.log(this.state.user_id);
+  //       user_id = result;
+  //       console.log(user_id);
+  //   })
+  // }
 
   setModalVisible(visible) {
     this.setState({ modalVisible: visible });
@@ -60,43 +76,52 @@ export default class FindnBook extends React.Component {
     ]);
   };
   makeAppointment = () => {
-    let params = {
-      time_slot: this.state.time_slot,
-      date: this.state.date
-    };
-    // this.setModalVisible(!this.state.modalVisible);
-    try {
-      fetch(
-        ip_path +
-          "/api/appointments/createAppointment/" +
-          this.props.data.user_id +
-          "/" +
-          this.props.data.doctor_id,
-        {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(params)
-        }
-      )
-        .then(response => response.json())
-        .then(responsejson => {
-          console.log("response of appointment", responsejson);
-          this.setState({ appointmentVisibility: true });
+    let user_id = null;
+    AsyncStorage.getItem("userID").then(result => {
+      // this.setState({ user_id: result });
+      // console.log(this.state.user_id);
+      user_id = result;
+    
 
-          // this.setState({loading:false, signUpMsg:'Account created successfully! and Navigate to Login'});
-          // this.props.navigation.navigate('SignIn')
-        })
-        .catch(err => {
-          this.onFail();
-          console.log(err);
-        });
-    } catch (err) {
-      console.log(err);
+      // this.setModalVisible(!this.state.modalVisible);
+      console.log(user_id);
+      let url = ip_path +"/api/appointments/createAppointment/" + user_id + "/" + this.props.data.doctor_id;
+      console.log(url);
+      try {
+        fetch(url,        
+          {
+            method: "POST",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json"
+            },
+            body: 
+              JSON.stringify({
+                time_slot : this.state.time_slot,
+                date: this.state.date
+              }),          
+            
+          }
+        )
+          .then(response => response.json())
+          .then(responsejson => {
+            console.log("response of appointment", responsejson);
+            this.setState({ appointmentVisibility: true });
+  
+            // this.setState({loading:false, signUpMsg:'Account created successfully! and Navigate to Login'});
+            // this.props.navigation.navigate('SignIn')
+          })
+          .catch(err => {
+            this.onFail();
+            console.log(err);
+          });
+      } catch (err) {
+        console.log(err);
     }
-  };
+  });
+  
+  }
+
   render() {
     return (
       <View style={{ flex: 1 }}>
@@ -125,7 +150,7 @@ export default class FindnBook extends React.Component {
                 date={this.state.date} //initial date from state
                 mode="date" //The enum of date, datetime and time
                 placeholder="select date"
-                format="DD-MM-YYYY"
+                format="MM-DD-YYYY"
                 minDate="01-01-2019"
                 maxDate="01-01-2025"
                 confirmBtnText="Confirm"

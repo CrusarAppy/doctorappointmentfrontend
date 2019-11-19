@@ -20,7 +20,7 @@ import MakeApointment from './Makeappointment'
 import ip_path from './ip_path'
 
 
-export default class Dentist extends React.Component {
+export default class Eye_specialist extends React.Component {
   static navigationOptions = {
     title: 'Dentists',
  //   backgroundColor:'#91dbb0',

@@ -1,1 +1,1 @@
-export default ip_path='http://192.168.1.126:3005'
+export default ip_path='http://192.168.1.77:3005'

@@ -114,8 +114,9 @@ export default class Dermatologist extends React.Component {
                           </TouchableOpacity>
 
                           <TouchableOpacity style={styles.call} onPress={this._homePage}>  
-                          <Icon name="phone" size={15} color="#ffffff" />                        
-                          <Text style={[styles.text1]}>Call</Text>                         
+                                               
+                          <Text style={[styles.text1]}>Call</Text>   
+                          <Icon name="phone" size={15} color="#ffffff" />                         
                      </TouchableOpacity>
                     </View>     
 
@@ -234,7 +235,9 @@ const styles = StyleSheet.create({
         fontSize: 15,
         justifyContent:'center',
         alignItems:'center',
-        marginLeft:4
+        marginLeft:4,
+        marginRight:4
+        
        
        },
        

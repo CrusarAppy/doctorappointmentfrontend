@@ -1,0 +1,17 @@
+
+    
+    
+    
+    
+    
+{"appointments":[
+    {"_id":"5dd13aee1c0e4e1b288b8b05","time_slot":"10:00-10:30 am","date":"2019-11-20T18:15:00.000Z","user_id":"5dd0d05dc5236e24fc45efef","doctor_id":"5dc8dda4f83c70021cdb2cf9","__v":0},
+    
+    {"_id":"5dd13b481c0e4e1b288b8b06","time_slot":"10:00-10:30 am","date":"2019-11-29T18:15:00.000Z","user_id":"5dd0d05dc5236e24fc45efef","doctor_id":"5dca4316af8c7e31804bdbbb","__v":0}],
+
+
+"doctorNameValue":[
+    {"Specialization":["dentist"],"_id":"5dc8dda4f83c70021cdb2cf9","Fullname":"Babim Adhikari","Username":"babim","Address":"Leknath","PhoneNumber":9805843445,"Email":"babim@gmail.com","Password":"babim123","Type":"Doctor","__v":0},
+        
+    {"Specialization":["dentist"],"_id":"5dca4316af8c7e31804bdbbb","Fullname":"saroj adhikari","Username":"saroj","Address":"lichibot","PhoneNumber":9867635789,"Email":"saroj@gmail.com","Password":"saroj123","Type":"Doctor","__v":0}]
+}

@@ -20,9 +20,9 @@ import MakeApointment from './Makeappointment'
 import ip_path from './ip_path'
 
 
-export default class Dentist extends React.Component {
+export default class GeneralCarePhysician extends React.Component {
   static navigationOptions = {
-    title: 'Dentists',
+    title: 'GeneralCarePhysician',
  //   backgroundColor:'#91dbb0',
   //  headerRight: <Icon name="map-marker-alt" size={30} color="#4d5454" />        
    //header:null
@@ -54,7 +54,7 @@ export default class Dentist extends React.Component {
     })
       // console.log(JSON.stringify(user))
       try{
-        fetch(ip_path+"/api/doctors/doctorSpeciality/dentist",
+        fetch(ip_path+"/api/doctors/doctorSpeciality/generalcarephysician",
         {
           method:'GET',
           headers:{

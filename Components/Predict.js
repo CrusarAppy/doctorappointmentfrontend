@@ -26,10 +26,10 @@ export default class Predict extends Component{
     this.state = {
       visibleModal: null,
       scrollOffset: null,
-      symptom1:"abdominal_pain",    
-      symptom2:"abdominal_pain",
-      symptom3:"abdominal_pain",
-      symptom4:"abdominal_pain",    
+      symptom1:"cramps",    
+      symptom2:"diarrhoea",
+      symptom3:"constipation",
+      symptom4:"mild_fever",    
       symptom5:"abdominal_pain",  
       data : [] 
     };
@@ -45,42 +45,9 @@ export default class Predict extends Component{
    
    
   }
-
-
-
-  // renderModalContent = () => (
-  //   <View style={styles.content}>
-  //     <Text style={styles.contentTitle}>Hi 👋!</Text>
-  //     <Button
-  //       onPress={() => this.setState({visibleModal: null})}
-  //       title="Close"
-  //     />
-  //   </View>
-  // );
-  // renderModalContent1 = () => (
-  //   <View style={styles.content}>
-  //     <Text style={styles.contentTitle}>Hello 👋!</Text>
-  //     <Button
-  //       onPress={() => this.setState({visibleModal: null})}
-  //       title="Close"
-  //     />
-  //   </View>
-  // );
-
-  handleOnScroll = event => {
-    this.setState({
-      scrollOffset: event.nativeEvent.contentOffset.y,
-    });
-  };
-
-  handleScrollTo = p => {
-    if (this.scrollViewRef) {
-      this.scrollViewRef.scrollTo(p);
-    }
-  }
   handlePredict = () => {
-
-    const url =`http://192.168.1.126:5000/?symptoms=${this.state.symptom1},${this.state.symptom2},${this.state.symptom3},${this.state.symptom4},${this.state.symptom5}`
+    console.log(1);
+    const url =`http://192.168.1.77:5000/?symptoms=${this.state.symptom1},${this.state.symptom2},${this.state.symptom3},${this.state.symptom4},${this.state.symptom5}`
     console.log(url)
     try{
       fetch(url)
@@ -105,7 +72,8 @@ export default class Predict extends Component{
   }
 
   render() {
-    var symptoms=[]
+    
+
     return (
       <ScrollView style={{backgroundColor: '#6c83ab'}}>
       <View style={[styles.container]}>
@@ -204,14 +172,14 @@ export default class Predict extends Component{
                <Picker.Item label = "malaise" value = "malaise" />
                <Picker.Item label = "blurred_and_distorted_vision" value = "blurred_and_distorted_vision" />
                <Picker.Item label = "Diarrhoea" value = "diarrhoea" />
-               <Picker.Item label = "Back pain" value = "Back Pain" />
+               <Picker.Item label = "Back pain" value = "back_pain" />
                <Picker.Item label = "constipation" value = "constipation" />
-               <Picker.Item label = "Chest Pain" value = "chest pain" />
-               <Picker.Item label = "Knee Pain" value = "knee pain" />
-               <Picker.Item label = "Yellow Urine" value = "Yello urine" />
-               <Picker.Item label = "Cramp" value = "cramp" />              
-               <Picker.Item label = "Diziness" value = "diziness" />
-               <Picker.Item label = "mild fever" value = "mildfever" />
+               <Picker.Item label = "Chest Pain" value = "chest_pain" />
+               <Picker.Item label = "Knee Pain" value = "knee_pain" />
+               <Picker.Item label = "Yellow Urine" value = "yellow_urine" />
+               <Picker.Item label = "Cramps" value = "cramps" />              
+               <Picker.Item label = "Diziness" value = "dizziness" />
+               <Picker.Item label = "mild fever" value = "mild_fever" />
                
             </Picker>
             <Picker selectedValue={this.state.sypmtom2}
@@ -309,14 +277,14 @@ export default class Predict extends Component{
                <Picker.Item label = "malaise" value = "malaise" />
                <Picker.Item label = "blurred_and_distorted_vision" value = "blurred_and_distorted_vision" />
                <Picker.Item label = "Diarrhoea" value = "diarrhoea" />
-               <Picker.Item label = "Back pain" value = "Back Pain" />
+               <Picker.Item label = "Back pain" value = "back_pain" />
                <Picker.Item label = "constipation" value = "constipation" />
-               <Picker.Item label = "Chest Pain" value = "chest pain" />
-               <Picker.Item label = "Knee Pain" value = "knee pain" />
-               <Picker.Item label = "Yellow Urine" value = "Yello urine" />
-               <Picker.Item label = "Cramp" value = "cramp" />              
-               <Picker.Item label = "Diziness" value = "diziness" />
-               <Picker.Item label = "mild fever" value = "mildfever" />
+               <Picker.Item label = "Chest Pain" value = "chest_pain" />
+               <Picker.Item label = "Knee Pain" value = "knee_pain" />
+               <Picker.Item label = "Yellow Urine" value = "yellow_urine" />
+               <Picker.Item label = "Cramps" value = "cramps" />              
+               <Picker.Item label = "Diziness" value = "dizziness" />
+               <Picker.Item label = "mild fever" value = "mild_fever" />
                </Picker>
             <Picker selectedValue={this.state.sypmtom3}
                     style={{height: 50, width: 150}}
@@ -413,14 +381,14 @@ export default class Predict extends Component{
                <Picker.Item label = "malaise" value = "malaise" />
                <Picker.Item label = "blurred_and_distorted_vision" value = "blurred_and_distorted_vision" />
                <Picker.Item label = "Diarrhoea" value = "diarrhoea" />
-               <Picker.Item label = "Back pain" value = "Back Pain" />
+               <Picker.Item label = "Back pain" value = "back_pain" />
                <Picker.Item label = "constipation" value = "constipation" />
-               <Picker.Item label = "Chest Pain" value = "chest pain" />
-               <Picker.Item label = "Knee Pain" value = "knee pain" />
-               <Picker.Item label = "Yellow Urine" value = "Yello urine" />
-               <Picker.Item label = "Cramp" value = "cramp" />              
-               <Picker.Item label = "Diziness" value = "diziness" />
-               <Picker.Item label = "mild fever" value = "mildfever" />
+               <Picker.Item label = "Chest Pain" value = "chest_pain" />
+               <Picker.Item label = "Knee Pain" value = "knee_pain" />
+               <Picker.Item label = "Yellow Urine" value = "yellow_urine" />
+               <Picker.Item label = "Cramps" value = "cramps" />              
+               <Picker.Item label = "Diziness" value = "dizziness" />
+               <Picker.Item label = "mild fever" value = "mild_fever" />
             </Picker>
             <Picker selectedValue={this.state.sypmtom4}
                     style={{height: 50, width: 150}}
@@ -517,14 +485,14 @@ export default class Predict extends Component{
                <Picker.Item label = "malaise" value = "malaise" />
                <Picker.Item label = "blurred_and_distorted_vision" value = "blurred_and_distorted_vision" />
                <Picker.Item label = "Diarrhoea" value = "diarrhoea" />
-               <Picker.Item label = "Back pain" value = "Back Pain" />
+               <Picker.Item label = "Back pain" value = "back_pain" />
                <Picker.Item label = "constipation" value = "constipation" />
-               <Picker.Item label = "Chest Pain" value = "chest pain" />
-               <Picker.Item label = "Knee Pain" value = "knee pain" />
-               <Picker.Item label = "Yellow Urine" value = "Yello urine" />
-               <Picker.Item label = "Cramp" value = "cramp" />              
-               <Picker.Item label = "Diziness" value = "diziness" />
-               <Picker.Item label = "mild fever" value = "mildfever" />
+               <Picker.Item label = "Chest Pain" value = "chest_pain" />
+               <Picker.Item label = "Knee Pain" value = "knee_pain" />
+               <Picker.Item label = "Yellow Urine" value = "yellow_urine" />
+               <Picker.Item label = "Cramps" value = "cramps" />              
+               <Picker.Item label = "Diziness" value = "dizziness" />
+               <Picker.Item label = "mild fever" value = "mild_fever" />
             </Picker>
             <Picker selectedValue={this.state.sypmtom5}
                     style={{height: 50, width: 150}}
@@ -621,20 +589,20 @@ export default class Predict extends Component{
                <Picker.Item label = "malaise" value = "malaise" />
                <Picker.Item label = "blurred_and_distorted_vision" value = "blurred_and_distorted_vision" />
                <Picker.Item label = "Diarrhoea" value = "diarrhoea" />
-               <Picker.Item label = "Back pain" value = "Back Pain" />
+               <Picker.Item label = "Back pain" value = "back_pain" />
                <Picker.Item label = "constipation" value = "constipation" />
-               <Picker.Item label = "Chest Pain" value = "chest pain" />
-               <Picker.Item label = "Knee Pain" value = "knee pain" />
-               <Picker.Item label = "Yellow Urine" value = "Yello urine" />
-               <Picker.Item label = "Cramp" value = "cramp" />              
-               <Picker.Item label = "Diziness" value = "diziness" />
-               <Picker.Item label = "mild fever" value = "mildfever" />
+               <Picker.Item label = "Chest Pain" value = "chest_pain" />
+               <Picker.Item label = "Knee Pain" value = "knee_pain" />
+               <Picker.Item label = "Yellow Urine" value = "yellow_urine" />
+               <Picker.Item label = "Cramps" value = "cramps" />              
+               <Picker.Item label = "Diziness" value = "dizziness" />
+               <Picker.Item label = "mild fever" value = "mild_fever" />
             </Picker> 
             <TouchableOpacity style={[styles.loginButton]} onPress={this.handlePredict}>
                         <Text style={[styles.text1]}>Predict</Text>
             </TouchableOpacity>
 
-            <View>
+            <View style={{marginBottom:20,marginTop:13}}>
               <Text>Predicted disease : {this.state.data}</Text>
             </View>
 

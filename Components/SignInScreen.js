@@ -45,6 +45,7 @@ export default  class SignInScreen extends React.Component {
       
       check_logged_in = async() => {
         let UserID = await AsyncStorage.getItem('userID');
+        console.log(UserID);
         (UserID ) ? this.props.navigation.navigate('Home') : this.props.navigation.navigate('SignIn')
       }
           
@@ -55,6 +56,7 @@ export default  class SignInScreen extends React.Component {
           await AsyncStorage.setItem('userID',res._id);
         
           await AsyncStorage.setItem('type',res.Type);
+          
           this.setState({loadingLogin:false,loginMsg:'sUCESS'});
           this.props.navigation.navigate('Home')
       }
@@ -92,7 +94,7 @@ export default  class SignInScreen extends React.Component {
             })
             .then((response => response.json()))
             .then((responsejson) => {
-                this.onSuccessSignIn(responsejson                       )
+                this.onSuccessSignIn(responsejson)
                 console.log(responsejson)            
 
 
@@ -221,7 +223,7 @@ export default  class SignInScreen extends React.Component {
       flexDirection:"row",
       height:60,
       width:'100%',
-      marginTop:60,
+      marginTop:10,
       justifyContent:'center',
       alignItems:'baseline'          
           },

@@ -11,153 +11,154 @@ import {
   StyleSheet,
   ScrollView,
   View,
+  FlatList
 } from 'react-native';
 import { createStackNavigator, createSwitchNavigator, createAppContainer } from 'react-navigation';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { ImageBackground } from 'react-native'
+import MakeApointment from './Makeappointment'
+import ip_path from './ip_path'
+
 
 export default class Cardiologist extends React.Component {
-    static navigationOptions = {
-        title: 'Find your Dentist',
-        header:null
-      };      
-    render() {
-        return (
-    <ScrollView style={[styles.backgroundColor]}>
-      <View>
-        <View style={[styles.container]}> 
-        <View style={[styles.searchengineContainer]}>
-              <View style={[styles.hflex]}> 
-                    <Icon name="search" size={30} color="#4d5454" />               
-                    <TextInput style={[styles.inputbox]}
-                      placeholder="Search for Cardinal Doctors"
-                      placeholderTextColor="#4d5454"
-                      //  underlineColorAndroid="transparent"                        
-                      //  numberOfLines = {1}
-                        borderBottomColor='#3e3a42'
-                        onChangeText={(username) => this.setState({ username })}
-                      />
-                    </View> 
-                </View>
-               <View style={[styles.doctorcontainer]}> 
-               <Text style={[styles.avai]}>Available Cardiologists</Text>           
-                <View style={[styles.profilecard]}>
-                 <View style={[styles.container1]}>
-                    <View style={[styles.container2]}>
-                    <Icon name="user-md" size={80} color="#4d5454" /> 
-                        <View style={[styles.verflex]}>
-                            <Text style={[styles.text]}>Dr.Sishir Poudel</Text>
-                            <Text>Miracle dental care</Text>
-                            <Text>Prithvichowkh,Pokhara</Text>
-                            <Text>9846800008</Text>
-                        </View>
-                        </View>
-                                                
-                        </View>
-                        <View style={[styles.container3]}>
-                          <TouchableOpacity style={styles.viewprofile} onPress={this._homePage}>                          
-                                <Text style={[styles.text]}>View Profile</Text>                         
-                          </TouchableOpacity>
-                          <TouchableOpacity style={styles.makeappointment} onPress={this._makeappointment}>                          
-                                <Text style={[styles.text1]}>Make Appointment</Text>                         
-                          </TouchableOpacity>
-                          <TouchableOpacity style={styles.call} onPress={this._homePage}>  
-                          <Icon name="phone" size={15} color="#ffffff" />                        
-                          <Text style={[styles.text1]}>Call</Text>                         
-                          </TouchableOpacity>
-                    </View>                    
-                  </View>      
-                  <View style={[styles.profilecard]}>
-                 <View style={[styles.container1]}>
-                    <View style={[styles.container2]}>
-                    <Icon name="user-md" size={80} color="#4d5454" /> 
-                        <View style={[styles.verflex]}>
-                            <Text style={[styles.text]}>Dr.Kabil Subedi</Text>
-                            <Text>Miracle dental care</Text>
-                            <Text>Parsyang,Pokhara</Text>
-                            <Text>9846801108</Text>
-                        </View>
-                        </View>
-                                                
-                        </View>
-                        <View style={[styles.container3]}>
-                          <TouchableOpacity style={styles.viewprofile} onPress={this._homePage}>                          
-                                <Text style={[styles.text]}>View Profile</Text>                         
-                          </TouchableOpacity>
-                          <TouchableOpacity style={styles.makeappointment} onPress={this._homePage}>                          
-                                <Text style={[styles.text1]}>Make Appointment</Text>                         
-                          </TouchableOpacity>
-                          <TouchableOpacity style={styles.call} onPress={this._homePage}>  
-                          <Icon name="phone" size={15} color="#ffffff" />                        
-                          <Text style={[styles.text1]}>Call</Text>                         
-                     </TouchableOpacity>
-                    </View>                    
-                  </View>      
-                  <View style={[styles.profilecard]}>
-                 <View style={[styles.container1]}>
-                    <View style={[styles.container2]}>
-                    <Icon name="user-md" size={80} color="#4d5454" /> 
-                        <View style={[styles.verflex]}>
-                            <Text style={[styles.text]}>Dr.Subham bhandari</Text>
-                            <Text>Bhandari dental care</Text>
-                            <Text>lamachour,Pokhara</Text>
-                            <Text>9846800008</Text>
-                        </View>
-                        </View>
-                                                
-                        </View>
-                        <View style={[styles.container3]}>
-                          <TouchableOpacity style={styles.viewprofile} onPress={this._homePage}>                          
-                                <Text style={[styles.text]}>View Profile</Text>                         
-                          </TouchableOpacity>
-                          <TouchableOpacity style={styles.makeappointment} onPress={this._homePage}>                          
-                                <Text style={[styles.text1]}>Make Appointment</Text>                         
-                          </TouchableOpacity>
-                          <TouchableOpacity style={styles.call} onPress={this._homePage}>  
-                          <Icon name="phone" size={15} color="#ffffff" />                        
-                          <Text style={[styles.text1]}>Call</Text>                         
-                     </TouchableOpacity>
-                    </View>                    
-                  </View> 
-                  <View style={[styles.profilecard]}>
-                 <View style={[styles.container1]}>
-                    <View style={[styles.container2]}>
-                    <Icon name="user-md" size={80} color="#4d5454" /> 
-                        <View style={[styles.verflex]}>
-                            <Text style={[styles.text]}>Dr.Dipin Timilsina</Text>
-                            <Text>Gandaki dental care</Text>
-                            <Text>Prithvichowkh,Pokhara</Text>
-                            <Text>9846914455</Text>
-                        </View>
-                        </View>
-                                                
-                        </View>
-                        <View style={[styles.container3]}>
-                          <TouchableOpacity style={styles.viewprofile} onPress={this._homePage}>                          
-                                <Text style={[styles.text]}>View Profile</Text>                         
-                          </TouchableOpacity>
-                          <TouchableOpacity style={styles.makeappointment} onPress={this._homePage}>                          
-                                <Text style={[styles.text1]}>Make Appointment</Text>                         
-                          </TouchableOpacity>
-                          <TouchableOpacity style={styles.call} onPress={this._homePage}>  
-                          <Icon name="phone" size={15} color="#ffffff" />                        
-                          <Text style={[styles.text1]}>Call</Text>                         
-                     </TouchableOpacity>
-                    </View>                    
-                  </View>                                  
-                  
-                </View>                                   
-             </View> 
-          </View>
-     </ScrollView>  
-                
-        
-        );
+  static navigationOptions = {
+    title: 'Cardiologists',
+ //   backgroundColor:'#91dbb0',
+  //  headerRight: <Icon name="map-marker-alt" size={30} color="#4d5454" />        
+   //header:null
+  };
+
+  constructor(props){
+    super(props)
+    this.state={
+      data:[],
+      loading:true,
+      clickedElement:{
+        flag:false,
+        name:"aasis",
+        address:"bagar",
+        email:"sddf",
+        user_id:'',
+        doctor_id:""
+      }
     }
-    _makeappointment = async () => {
-      // await AsyncStorage.setItem('userToken', 'abc');
-      this.props.navigation.navigate('MakeApointment');
-    };
+
+    
+  }
+
+  componentDidMount(){
+    
+
+    AsyncStorage.getItem("userID").then((result)=>{
+        this.setState({user_id:result})
+    })
+      // console.log(JSON.stringify(user))
+      try{
+        fetch(ip_path+"/api/doctors/doctorSpeciality/cardiologist",
+        {
+          method:'GET',
+          headers:{
+            'Accept' : 'application/json',
+            'Content-Type' : 'application/json'
+          },
+          //body: JSON.stringify(user)
+        })
+        .then((response => response.json()))
+        .then((responsejson) => {
+          this.setState({loading:false})
+           // this.onSuccessSignIn(responsejson                       )
+            console.log(responsejson.doctor) 
+           this.setState({data:responsejson.doctor})          
+    
+    
+        })
+        .catch(err => {
+          //this.onFailSignIn()
+          console.log(err)
+        })
+        
+    }catch(err){          
+        
+        console.log(err);
+    }
+  }
+    
+
+      
+      _dentist =(item) => {
+
+
+        this.setState({clickedElement:{flag:true,name:item.Fullname,address:item.Address,email:item.Email,user_id:this.state.clickedElement.user_id,doctor_id:item._id}})
+
+        //await AsyncStorage.setItem('userToken', 'abc');    
+        
+       
+      };
+      
+      _renderItem = ({item}) => (
+        <TouchableOpacity onPress={() => this._onPress(item)}>
+          <View style={[styles.container]}>
+                <View style={[styles.container2]}>
+                    <Icon name="user-md" size={80} color="#4d5454" /> 
+                        <View style={[styles.verflex]}>
+                            <Text style={[styles.text]}></Text>
+                            <Text>{item.Fullname}</Text>
+                            <Text>{item.Address}</Text>
+                            <Text>{item.Email}</Text>
+                            <Text></Text>
+                        </View>
+                 </View>
+                 <View style={[styles.container3]}>
+                          <TouchableOpacity style={styles.viewprofile} onPress={this._homePage}>                          
+                                <Text style={[styles.text]}>View Profile</Text>                         
+                          </TouchableOpacity>
+
+                          <TouchableOpacity style={styles.makeappointment} onPress={()=>this._dentist(item)}>                          
+                                <Text style={[styles.text1]}>Make Appointment</Text>                         
+                          </TouchableOpacity>
+
+                          <TouchableOpacity style={styles.call} onPress={this._homePage}>  
+                                                
+                            <Text style={[styles.text1]}>Call</Text>  
+                          <Icon name="phone" size={15}  color="#ffffff" />                        
+                     </TouchableOpacity>
+                    </View>  
+                </View>
+        </TouchableOpacity>
+     );
+
+
+    render() {
+
+      if(!this.state.clickedElement.flag)
+      {
+        if(this.state.loading){
+          return <View style={{flex:1, alignItems:'center',justifyContent:'center'}}><ActivityIndicator size={"large"} /><Text>Loading...</Text></View>
+        }
+        else{
+        return (
+
+
+          <View>
+            <FlatList data={this.state.data}
+            renderItem = {this._renderItem}
+            
+            /> 
+          </View>       
+ 
+        );
+        }
+      }
+      else{
+        return(
+          <MakeApointment data={this.state.clickedElement} />
+        )
+      }
+    }
+    // _makeappointment = async () => {
+    //   // await AsyncStorage.setItem('userToken', 'abc');
+    //   this.props.navigation.navigate('MakeApointment');
+    // };
 }
 
 const styles = StyleSheet.create({    
@@ -235,7 +236,8 @@ const styles = StyleSheet.create({
         fontSize: 15,
         justifyContent:'center',
         alignItems:'center',
-        marginLeft:4
+        marginLeft:4,
+        marginRight:4
        
        },
        

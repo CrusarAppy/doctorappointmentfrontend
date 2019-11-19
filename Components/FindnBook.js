@@ -97,11 +97,11 @@ export default class FindnBook extends React.Component {
                   </TouchableOpacity>
                 </View>
                 <View style={[styles.hflex]} >
-                  <TouchableOpacity style={[styles.vflex]} onPress={this._neuro}>
+                  <TouchableOpacity style={[styles.vflex]} onPress={this._medicine}>
                     <Icon name="cannabis" size={30} color="#4d5454" style={[styles.image]}/> 
                     <Text>Medicine</Text>
                     </TouchableOpacity> 
-                    <TouchableOpacity style={[styles.vflex]} onPress={this._undercons}>
+                    <TouchableOpacity style={[styles.vflex]} onPress={this._orthopedic}>
                     <Icon name="bone" size={30} color="#4d5454" style={[styles.image]}/> 
                     <Text>Orthopedic</Text>
                   </TouchableOpacity>                
@@ -126,6 +126,26 @@ export default class FindnBook extends React.Component {
                     <Text>General Surgery</Text>
                   </TouchableOpacity>                
                 </View>
+                <View style={[styles.hflex]}>
+                  <TouchableOpacity style={[styles.vflex]} onPress={this._undercons}>
+                    <Icon name="meh-rolling-eyes" size={30} color="#4d5454" style={[styles.image]}/> 
+                    <Text>Gastroenterologist</Text>
+                    </TouchableOpacity> 
+                    <TouchableOpacity style={[styles.vflex]} onPress={this._undercons}> 
+                    <Icon name="syringe" size={30} color="#4d5454" style={[styles.image]}/> 
+                    <Text>ENT</Text>
+                  </TouchableOpacity>                
+                </View>
+                <View style={[styles.hflex]}>
+                  <TouchableOpacity style={[styles.vflex]} onPress={this._undercons}>
+                    <Icon name="meh-rolling-eyes" size={30} color="#4d5454" style={[styles.image]}/> 
+                    <Text>Allergist</Text>
+                    </TouchableOpacity> 
+                    <TouchableOpacity style={[styles.vflex]} onPress={this._undercons}> 
+                    <Icon name="syringe" size={30} color="#4d5454" style={[styles.image]}/> 
+                    <Text>Radiologist</Text>
+                  </TouchableOpacity>                
+                </View>
               </View>      
 
 
@@ -141,9 +161,13 @@ export default class FindnBook extends React.Component {
           // await AsyncStorage.setItem('userToken', 'abc');
           this.props.navigation.navigate('Dermato');
         };
-        _undercons = async () => {
+        _medicine = async () => {
           // await AsyncStorage.setItem('userToken', 'abc');
-          this.props.navigation.navigate('Underconstruction');
+          this.props.navigation.navigate('Medicine');
+        };
+        __orthopedic= async () => {
+          // await AsyncStorage.setItem('userToken', 'abc');
+          this.props.navigation.navigate('Orthopedic');
         };
         _neuro = async () => {
           // await AsyncStorage.setItem('userToken', 'abc');
@@ -205,11 +229,11 @@ export default class FindnBook extends React.Component {
         marginTop:10,        
         
       },
-      container1: {
+    container1: {
         flex: 1,
       //  alignItems: 'center',
         justifyContent: 'center',
-        height:600,
+        height:670,
         width:'100%',
         marginTop:50,
       //  borderBottomColor:'#079126',

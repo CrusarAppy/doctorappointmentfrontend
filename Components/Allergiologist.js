@@ -20,7 +20,7 @@ import MakeApointment from './Makeappointment'
 import ip_path from './ip_path'
 
 
-export default class Dentist extends React.Component {
+export default class Allergiologist extends React.Component {
   static navigationOptions = {
     title: 'Dentists',
  //   backgroundColor:'#91dbb0',
@@ -54,7 +54,7 @@ export default class Dentist extends React.Component {
     })
       // console.log(JSON.stringify(user))
       try{
-        fetch(ip_path+"/api/doctors/doctorSpeciality/dentist",
+        fetch(ip_path+"/api/doctors/doctorSpeciality/allergiologist",
         {
           method:'GET',
           headers:{
