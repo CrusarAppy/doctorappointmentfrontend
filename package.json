@@ -10,7 +10,7 @@
   "dependencies": {
     "axios": "^0.19.0",
     "react": "16.8.6",
-    "react-native": "0.60.4",
+    "react-native": "0.62.3",
     "react-native-create-library": "^3.1.2",
     "react-native-datepicker": "^1.7.2",
     "react-native-dropdown-menu": "^2.0.0",
